@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Zeta Automation Suite"> 
+ <parameter name="project" value="Corporate"/>
+ <parameter name="environment" value="@ENVIRONMENT@"/>
+ <parameter name="OS" value="@OS@"/>
+ <parameter name="runBrowser" value="@RUNBROWSER@"/>
+ <parameter name="runHost" value="@RUNHOST@"/>
+ <test name = "BrowserSuite">
+    <classes>
+      <class name = "zeta.utilities.ZetaTestDriver"/>
+      <class name="zeta.test.ZetaCmsSuite"/>
+      <class name="zeta.test.CorporateSuite"/> 
+    </classes>
+  </test>
+</suite>

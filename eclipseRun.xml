@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Zeta Automation Suite" parallel="methods" thread-count="2"> 
+ <parameter name="project" value="nextgen"/>
+ <parameter name="environment" value="qa"/>
+ <parameter name="runHost" value="local"/>
+ <parameter name="OS" value="windows"/>
+ <parameter name="runBrowser" value="chrome"/>
+<test name = "zeta_CHROME">
+    <classes>
+      <class name = "zeta.utilities.ZetaTestDriver"/>
+      <class name="zeta.test.ZetaCmsSuite">
+      	    <methods>
+      	 		<include name="alternateTextImageComponent"/>
+      		</methods> 
+      </class>
+      <!-- <class name="zeta.test.NextGenSuite"/> -->
+      <!-- <class name="zeta.test.CorporateSuite"/>  -->
+      <!-- <class name="zeta.test.DNISuite"/> -->
+      <!-- <class name="zeta.test.ZetaCmsSuite"/> -->
+    </classes>
+  </test>
+</suite>

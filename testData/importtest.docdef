@@ -1,0 +1,85 @@
+{
+	"parent": "default",
+	"slug": "importtest",
+	"__v": 45,
+	"Editions": [
+		{
+			"Versions": [],
+			"Environments": {
+				"env-2": 5
+			},
+			"Criteria": {
+				"end_date": "9999-12-31 23:59:59",
+				"start_date": "0000-00-00 00:00:00"
+			},
+			"Properties": {
+				"is_draft": false,
+				"default": true,
+				"desc": "",
+				"name": "Default"
+			},
+			"UI": [
+				{
+					"cfg": {
+						"img-src": "{Doc.image}",
+						"img-size": "500x500",
+						"css-style": "",
+						"css-class": "",
+						"el-id": "image",
+						"name": "image"
+					},
+					"cmp": "global:generic:img"
+				},
+				{
+					"cfg": {
+						"content": "{Doc.textarea}",
+						"css-style": "",
+						"css-class": "",
+						"el-id": "",
+						"name": "textarea"
+					},
+					"cmp": "global:generic:content"
+				}
+			],
+			"Render": {
+				"assets_footer": "",
+				"assets_header": [
+					"5989f323bc420514a8dc12b4"
+				],
+				"navigation": "",
+				"wrapper": "wrapper:corporate:default"
+			}
+		}
+	],
+	"Fields": [
+		{
+			"Fields": [
+				{
+					"name": "image",
+					"slug": "image",
+					"cmp": "zeta:image-selector",
+					"Validation": []
+				},
+				{
+					"name": "textarea",
+					"slug": "textarea",
+					"cmp": "zeta:form-textarea",
+					"Validation": []
+				}
+			],
+			"Tab": {
+				"slug": "general",
+				"name": "General"
+			}
+		}
+	],
+	"Dates": {
+		"deleted": null,
+		"modified": "2017-08-08T12:46:20.801Z",
+		"created": "2017-08-08T12:46:20.801Z"
+	},
+	"Properties": {
+		"desc": "",
+		"title": "ImportTest"
+	}
+}

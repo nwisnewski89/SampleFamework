@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Zeta Automation Suite"> 
+ <parameter name="project" value="NextGen"/>
+ <parameter name="environment" value="qa"/>
+ <parameter name="OS" value="mac"/>
+ <parameter name="runBrowser" value="chrome"/>
+ <parameter name="runHost" value="grid"/>
+ <test name = "BrowserSuite">
+    <classes>
+      <class name = "zeta.utilities.ZetaTestDriver"/>
+      <class name="zeta.test.ZetaCmsSuite">
+      	<methods>
+      		<exclude name="createMediaGroup"/>
+      	</methods>
+      </class>
+      <class name="zeta.test.NextGenSuite"/>
+    </classes>
+  </test>
+</suite>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     May 18, 2017                                                       
+     Zeta              
+     Author: Nick Wisnewksi                                                               
+     ====================================================================== -->
+<project basedir="." name="Zeta Automation Suite">
+	<property name="basedir" value="." />
+	<property name="lib" value="${basedir}/lib" />
+	<property name="src" value="${basedir}/src" />
+	<property name="bin" value="${basedir}/bin" />
+	<property name="almrun" value="${basedir}/Reports"/>
+	<property name="tempSuite" value ="${basedir}/tempSuite"/>
+	
+	<!-- ====== Set the classpath ====  -->
+		<path id="classpath">
+			<pathelement location="${bin}" />
+			<fileset dir="${lib}">
+				<include name="*.jar" />
+			</fileset>
+		</path>
+    <!-- ================================= 
+          target: Delete Directories             
+         ================================= -->
+    <target name="delete">
+    	<delete dir="${bin}"/>
+    	<delete dir ="${almrun}"/>
+    	<delete dir="${tempSuite}"/>
+    </target>
+
+	<!-- ================================= 
+	          target: Create Directories             
+	         ================================= -->
+    <target name="create" depends = "delete">
+    	<mkdir dir="${bin}"/>
+    	<mkdir dir="${almrun}"/>
+    	<mkdir dir="${tempSuite}"/>
+    </target>
+	
+	<!-- ================================= 
+		          target: Compile             
+		         ================================= -->
+	<target name="compile" depends="create">
+			<javac srcdir="${src}" classpathref="classpath" includeAntRuntime="No" destdir="${bin}" />
+	</target>
+	
+	<!-- ================================= 
+			          target: Single Run TestNG xml            
+			         ================================= -->
+	
+	<taskdef name="testng" classname="org.testng.TestNGAntTask" classpathref="classpath" />
+		
+		<target name="run" depends="compile">
+			<condition property="propsSpecified">
+			      <and>
+			      	 <isset property="os"/>
+			      	 <isset property="runBrowser"/>
+			      	 <isset property="environment"/>
+			      	 <isset property="project"/>
+			      	 <isset property="runHost"/>
+			      </and>
+			  </condition>
+			<fail unless="propsSpecified" 
+			            message="Properties not specified!"/>
+			   <copy todir="${tempSuite}" file="${project}.xml" overwrite="true">
+			      <filterset>
+			      	 <filter token="OS" value="${os}"/>
+			      	 <filter token="RUNBROWSER" value="${runBrowser}"/>
+			      	 <filter token="ENVIRONMENT" value="${environment}"/>
+			      	 <filter token="PROJECT" value="${project}"/>
+			      	 <filter token="RUNHOST" value="${runHost}"/>
+			      </filterset>
+			   </copy>
+			<testng outputdir="${almrun}" classpathref="classpath" useDefaultListeners="true">
+				<xmlfileset dir="${tempSuite}" includes="${project}.xml" />
+			</testng>
+		</target>
+</project>
